@@ -46,7 +46,7 @@ public class JPlaceholderTextField extends JTextField{
 		if(getText() == null || getText().length() < 1) {
 			g.setFont(getFont());
 			g.setColor(placeHolderColor);
-			g.drawString(placeholder, getInsets().left, g.getFontMetrics().getMaxAscent() + getInsets().top);
+			g.drawString(placeholder, getInsets().left, getInsets().top + getHeight()/2);
 		}
 		
 	}

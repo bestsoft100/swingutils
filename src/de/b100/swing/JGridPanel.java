@@ -51,5 +51,13 @@ public class JGridPanel extends JPanel{
 	public GridBagConstraints getGridBagConstraints() {
 		return gridBagConstraints;
 	}
+	
+	public int getFillMode() {
+		return gridBagConstraints.fill;
+	}
+	
+	public void setFillMode(int fillMode) {
+		gridBagConstraints.fill = fillMode;
+	}
 
 }

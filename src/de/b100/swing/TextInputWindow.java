@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,7 +16,7 @@ import javax.swing.JTextField;
 
 public abstract class TextInputWindow implements ActionListener{
 	
-	private ArrayList<Input> textFields;
+	private ArrayList<Input> inputs;
 	private ArrayList<JButton> buttons;
 	
 	private String title;
@@ -26,7 +28,7 @@ public abstract class TextInputWindow implements ActionListener{
 	private JPanel buttonPanel;
 	
 	public TextInputWindow() {
-		textFields = new ArrayList<>();
+		inputs = new ArrayList<>();
 		buttons = new ArrayList<>();
 	}
 	
@@ -35,7 +37,11 @@ public abstract class TextInputWindow implements ActionListener{
 	}
 	
 	protected void addTextField(String name, JTextField textField) {
-		textFields.add(new Input(name, textField));
+		inputs.add(new InputString(name, textField));
+	}
+	
+	protected void addCheckBox(JCheckBox checkBox) {
+		inputs.add(new InputBoolean("", checkBox));
 	}
 	
 	protected void setTitle(String title) {
@@ -58,9 +64,9 @@ public abstract class TextInputWindow implements ActionListener{
 		panel.getGridBagConstraints().ipadx = 100;
 		
 		int i=0;
-		while(i < textFields.size()) {
-			textFieldPanel.add(new JLabel(textFields.get(i).name), 0, i, 1, 1, 0, 1);
-			textFieldPanel.add(textFields.get(i).textField, 1, i, 1, 1, 1, 1);
+		while(i < inputs.size()) {
+			textFieldPanel.add(new JLabel(inputs.get(i).name), 0, i, 1, 1, 0, 1);
+			textFieldPanel.add(inputs.get(i).component, 1, i, 1, 1, 1, 1);
 			i++;
 		}
 		
@@ -70,12 +76,14 @@ public abstract class TextInputWindow implements ActionListener{
 			j++;
 		}
 
-		panel.getGridBagConstraints().insets = new Insets(10, 0, 10, 0);
+		panel.getGridBagConstraints().insets = new Insets(5, 0, 5, 0);
 		if(title != null) {
-			panel.add(new JLabel(title), 0, 0);
+			JPanel panel2 = new JPanel();
+			panel2.add(new JLabel(title));
+			panel.add(panel2, 0, 0, 1, 1, 1, 0);
 		}
-		panel.add(textFieldPanel, 0, 0, 1, 1, 1, 1);
-		panel.add(buttonPanel, 0, 1, 1, 1, 1, 1);
+		panel.add(textFieldPanel, 0, 1, 1, 1, 1, 1);
+		panel.add(buttonPanel, 0, 2, 1, 1, 1, 1);
 		
 		frame.add(panel);
 		frame.pack();
@@ -93,16 +101,39 @@ public abstract class TextInputWindow implements ActionListener{
 		return frame;
 	}
 	
-	public static class Input{
+	public abstract static class Input{
 		
-		public String name;
-		public JTextField textField;
+		private String name;
+		private JComponent component;
 		
-		public Input(String name, JTextField textField) {
+		public Input(String name, JComponent component) {
 			this.name = name;
-			this.textField = textField;
+			this.component = component;
 		}
 		
+		public String getName() {
+			return name;
+		}
+		
+		public JComponent getComponent() {
+			return component;
+		}
+		
+	}
+	
+	public static class InputString extends Input{
+		
+		public InputString(String name, JTextField textField) {
+			super(name, textField);
+		}
+		
+	}
+	
+	public static class InputBoolean extends Input{
+		
+		public InputBoolean(String name, JCheckBox checkBox) {
+			super(name, checkBox);
+		}
 	}
 	
 }

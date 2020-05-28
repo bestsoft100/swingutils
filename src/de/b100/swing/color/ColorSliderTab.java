@@ -76,4 +76,10 @@ public abstract class ColorSliderTab extends JGridPanel implements ChangeListene
 	
 	public abstract void stateChanged(JSlider slider);
 	
+	public void setValue(int v1, int v2, int v3) {
+		slider1.setValue(v1);
+		slider2.setValue(v2);
+		slider3.setValue(v3);
+	}
+	
 }

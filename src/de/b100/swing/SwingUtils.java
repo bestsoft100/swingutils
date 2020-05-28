@@ -117,4 +117,10 @@ public abstract class SwingUtils {
 		return comboBox;
 	}
 	
+	public static JMenuItem newJMenuItem(String text, ActionListener actionListener) {
+		JMenuItem jMenuItem = new JMenuItem(text);
+		jMenuItem.addActionListener(actionListener);
+		return jMenuItem;
+	}
+	
 }

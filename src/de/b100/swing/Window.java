@@ -15,4 +15,12 @@ public class Window extends JFrame{
 		setTitle(title);
 	}
 	
+	public void setVisible(boolean b) {
+		if(b) {
+			pack();
+			setLocationRelativeTo(null);
+		}
+		super.setVisible(b);
+	}
+	
 }

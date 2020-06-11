@@ -74,9 +74,9 @@ public class JColorPicker extends Window implements WindowListener, ActionListen
 		okButton = newJButton("Ok", this);
 		cancelButton = newJButton("Cancel", this);
 
-		panel.add(preview, 0, 0, 1, 1, 0.0, 0.0);
+		panel.add(preview, 0, 0, 0, 0);
 		panel.add(tabs, 1, 0);
-		panel.add(newJPanel(cancelButton, okButton), 0, 1, 2, 1);
+		panel.add(newJPanel(cancelButton, okButton), 0, 1, 1, 1, 2, 1);
 		
 		add(panel);
 		setResizable(false);

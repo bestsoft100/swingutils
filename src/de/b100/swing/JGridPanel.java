@@ -34,12 +34,12 @@ public class JGridPanel extends JPanel{
 		this.add(component, x, y, 1, 1);
 	}
 	
-	public void add(Component component, int x, int y, int w, int h) {
-		this.add(component, x, y, w, h, defaultHorizontalWeight, defaultVerticalWeight);
+	public void add(Component component, int x, int y, double weightX, double weightY) {
+		this.add(component, x, y, weightX, weightY, 1, 1);
 	}
 	
-	public void add(Component component, int x, int y, int w, int h, double weightX, double weightY) {
-		super.add(component, c(gridBagConstraints, x, y, w, h, weightX, weightY));
+	public void add(Component component, int x, int y, double weightX, double weightY, int w, int h) {
+		super.add(component, c(gridBagConstraints, x, y, weightX, weightY, w, h));
 	}
 	
 	@Deprecated

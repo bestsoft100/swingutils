@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
 
 public abstract class SwingUtils {
 	
-	public static GridBagConstraints c(GridBagConstraints c, int x, int y, int w, int h, double wx, double wy) {
+	public static GridBagConstraints c(GridBagConstraints c, int x, int y, double wx, double wy, int w, int h) {
 		c.gridx = x;
 		c.gridy = y;
 		c.gridwidth = w;
